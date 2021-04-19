@@ -31,6 +31,7 @@ const scheme = buildSchema(`
         getAllUsers: [User]
         getUser(id: ID): User
         login(username: String!, password: String!): AuthData!
+        authMe: Boolean
     }
     
     type Mutation {
