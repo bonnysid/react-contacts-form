@@ -5,10 +5,15 @@ const {graphqlHTTP} = require("express-graphql");
 const schema = require('./scheme/scheme')
 const users = require('./data')
 const jwt = require('jsonwebtoken')
+const isAuth = require('./middleware/middleware')
+
+const findUserById = (id) => {
+    return users.find(u => u.id == id)
+}
 
 const root = {
     getAllUsers: () => users,
-    getUser: ({id}) => users.find(u => u.id == id),
+    getUser: ({id}) => findUserById(id),
     login: ({username, password}) => {
         const user = users.find(u => u.username === username)
         if(!user) throw new Error('User doesn\'t exists')
@@ -38,13 +43,36 @@ const root = {
         }
         users.push(user)
         return user
-    }
+    },
+    follow: ({id}, req) => {
+        if(!req.isAuth) throw new Error('You need to authorize!')
 
+        const loggedUser = findUserById(req.id)
+        const user = findUserById(id)
+        if(!user || !loggedUser) throw new Error(`User with this ${id} doesn't exists!`)
+
+        loggedUser.push(user)
+
+        return true;
+    },
+    unfollow: ({id}, req) => {
+        if(!req.isAuth) throw new Error('You need to authorize!')
+
+        const loggedUser = findUserById(req.id)
+        const user = findUserById(id)
+        if(!user || !loggedUser) throw new Error(`User with this ${id} doesn't exists!`)
+
+        loggedUser.followed = loggedUser.followed.filter(u => u.id != id)
+
+        return true;
+    }
 }
 
 const app = express()
 
 app.use(cors())
+
+app.use(isAuth)
 
 app.use('/graphql', graphqlHTTP({
     graphiql: true,
