@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    position: fixed;
+    z-index: 2;
+    align-items: center;
+    margin: 0 1em;
+    max-height: 55px;
+}
+
+.login {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-light);
+}

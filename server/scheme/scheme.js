@@ -6,6 +6,7 @@ const scheme = buildSchema(`
         username: String
         password: String
         followed: [User]
+        avatarUrl: String
         status: String
     }
     
@@ -27,11 +28,16 @@ const scheme = buildSchema(`
         password: String!
     }
     
+    type AuthMe {
+        id: ID
+        isAuth: Boolean!
+    }
+    
     type Query {
         getAllUsers: [User]
         getUser(id: ID): User
         login(username: String!, password: String!): AuthData!
-        authMe: Boolean
+        authMe: AuthMe
     }
     
     type Mutation {

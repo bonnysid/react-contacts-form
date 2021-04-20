@@ -1,5 +1,7 @@
 const findUserById = require('../utils/findUserById')
 const users = require('../data')
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
     login: ({username, password}) => {
@@ -21,7 +23,10 @@ module.exports = {
             username: user.username
         }
     },
-    authMe: (args, req) => req.isAuth,
+    authMe: (args, req) => ({
+        id: req.id,
+        isAuth: req.isAuth
+    }),
     createUser: ({input}) => {
         const user = {
             id: Date.now(),

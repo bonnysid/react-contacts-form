@@ -1,38 +1,62 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+    --main-color: rgb(32, 34, 37);
+    --main-color-light: rgb(57, 60, 65);
+    --main-color-extralight: rgb(47, 49, 54);
+    --gray-light: #f7f7f7;
+    --text: rgb(165, 170, 176);
+    --text-light: #f6f6f6;
+    --red: #bf5050;
+    --green: #70b35f;
+    --red-light: #c36e6e;
+    --green-light: #9ac38f;
+    --blue: #5a9dee
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button {
+    background: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+    background: var(--main-color-light);
+    color: rgb(54, 57, 63);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.input {
+    border-radius: 5px;
+    border: 1px solid var(--blue);
+    padding: 0.7em;
 }
 
-.App-link {
-  color: #61dafb;
+.error-text {
+    color: var(--red);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.error {
+    border: 2px solid var(--red);
+}
+
+
+#app-wrapper {
+    font-family: 'Open Sans', sans-serif;
+    height: 100%;
+}
+
+.separator {
+    margin: 8px 10px;
+    height: 1px;
+    background: #727272;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    grid-area: container;
+    padding: 1.5em;
+    height: 100%;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-light);
 }
