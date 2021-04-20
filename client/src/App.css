@@ -24,8 +24,8 @@ button {
 }
 
 body {
-    background: var(--main-color-light);
-    color: rgb(54, 57, 63);
+    background: rgb(54, 57, 63);
+    color: var(--text-light);
 }
 
 .btn {

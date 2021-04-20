@@ -2,6 +2,7 @@ export interface IUser {
     id: number
     username: string
     followed: IUser[]
+    avatarUrl: string
     status?: string
 }
 

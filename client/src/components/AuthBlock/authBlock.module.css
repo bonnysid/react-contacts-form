@@ -1,6 +1,5 @@
 .container {
     display: flex;
-    position: fixed;
     z-index: 2;
     align-items: center;
     margin: 0 1em;

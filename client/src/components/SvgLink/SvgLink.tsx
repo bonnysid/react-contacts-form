@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './svgLink.module.css';
 import {NavLink} from 'react-router-dom';
-import icons from '../../../assets/img/icons.svg';
+import icons from '../../assets/icons.svg';
 
 interface SvgLinkProps {
     title: string,
@@ -21,6 +21,7 @@ const SvgLink: React.FC<SvgLinkProps> = ({title, link, isExit, className, svgCla
             <svg className={svgClassName ? svgClassName : s.icon + (isExit ? " " + s.exit_icon : "")}>
                 <use xlinkHref={`${icons}#${urlId || title.toLowerCase().replace(/ /g, '_')}`}/>
             </svg>
+            <span className={s.text}>{title}</span>
         </NavLink>
     );
 }
