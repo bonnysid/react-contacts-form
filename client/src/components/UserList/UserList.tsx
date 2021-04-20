@@ -7,8 +7,8 @@ type UserListProps = {
     users: IUser[]
 }
 
-const UserList: FC<UserListProps> = ({users}) => {
-    const elements = users.map(user => <User user={user} follow={(id) => {}} unfollow={(id => {})} isFollowed={false}/>)
+const UserList: FC<UserListProps> = ({users = []}) => {
+    const elements = users.map(user => <User key={user.id} user={user} follow={(id) => {}} unfollow={(id => {})} isFollowed={false}/>)
 
     return (
         <ul className={s.list}>

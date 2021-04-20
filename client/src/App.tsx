@@ -24,7 +24,7 @@ const App: FC = () => {
         <>
             <Header />
             <main className='container'>
-                <Route path={'/profile'} render={() => <Profile />}/>
+                <Route path={'/profile/:id?'} render={() => <Profile />}/>
                 <Route path={'/users'} render={() => <UserList users={users}/>} />
                 <Route path={'/login'} render={() => <LoginForm />}/>
             </main>

@@ -13,7 +13,7 @@ type UserProps = {
 const User: FC<UserProps> = ({user, follow, unfollow, isFollowed}) => {
     return (
         <div className={s.container}>
-            <Avatar url={user.avatarUrl}/>
+            <Avatar width={50} url={user.avatarUrl}/>
             <h2 className={s.name}>{user.username}</h2>
             <p className={s.status}>{user.status}</p>
             {isFollowed ?

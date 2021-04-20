@@ -15,7 +15,7 @@ const AuthBlock: FC = (props) => {
         <NavLink to={data.isAuth ? '/profile' : '/login'} className={s.container}>
             {data.isAuth ?
                 <>
-                    <Avatar />
+                    <Avatar width={50}/>
                     <p className={s.login}>{data.username}</p>
                 </>
                 :

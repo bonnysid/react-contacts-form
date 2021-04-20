@@ -6,7 +6,8 @@
 "avatar status btn";
 
     grid-template-columns: 60px auto 100px;
-    width: 500px;
+    min-width: 360px;
+    max-width: 500px;
     background: var(--main-color-extralight);
     padding: 1em;
     border-radius: 5px;
@@ -22,6 +23,7 @@
 
 .status {
     grid-area: status;
+    color: var(--text);
 }
 
 .btn {
