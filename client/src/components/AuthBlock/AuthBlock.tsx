@@ -4,6 +4,7 @@ import {GET_AUTH_ME} from "../../query/auth";
 import s from './authBlock.module.css'
 import Preloader from "../Preloader/Preloader";
 import { NavLink } from 'react-router-dom';
+import Avatar from "../Avatar/Avatar";
 
 const AuthBlock: FC = (props) => {
     const {data, loading, error} = useQuery(GET_AUTH_ME)
@@ -14,7 +15,7 @@ const AuthBlock: FC = (props) => {
         <NavLink to={'/profile'} className={s.container}>
             {data.isAuth ?
                 <>
-                    <AvatarLower />
+                    <Avatar />
                     <p className={s.login}>{data.username}</p>
                 </>
                 :
