@@ -1,9 +1,9 @@
 import {useMutation} from "@apollo/client";
-import {FOLLOW, UNFOLLOW} from "../query/auth";
+import {FOLLOW, UNFOLLOW} from "../query/user";
 
 const useFollowUnfollow = () => {
-    const [followUser] = useMutation(FOLLOW)
-    const [unfollowUser] = useMutation(UNFOLLOW)
+    const [followUser] = useMutation<{follow: boolean}>(FOLLOW)
+    const [unfollowUser] = useMutation<{unfollow: boolean}>(UNFOLLOW)
 
     return {
         follow: (id: number | string) => followUser({variables: {id}}),

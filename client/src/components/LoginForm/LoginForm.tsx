@@ -7,10 +7,11 @@ import s from './loginForm.module.css'
 import { useHistory } from "react-router-dom";
 
 type LoginFormProps = {
+    loggedUser?: AuthMe
     setLoggedUser: (user: AuthMe) => void
 }
 
-const LoginForm: FC<LoginFormProps> = ({setLoggedUser}) => {
+const LoginForm: FC<LoginFormProps> = ({setLoggedUser, loggedUser}) => {
     const usernameInput = useInput()
     const passwordInput = useInput()
     const history = useHistory()
@@ -21,6 +22,8 @@ const LoginForm: FC<LoginFormProps> = ({setLoggedUser}) => {
             password: passwordInput.value
         }
     })
+
+    if(loggedUser && loggedUser.isAuth) history.push('/profile')
 
     const login = () => {
         refetch({
@@ -39,8 +42,9 @@ const LoginForm: FC<LoginFormProps> = ({setLoggedUser}) => {
 
     return (
         <div className={s.block}>
-            <input {...usernameInput} type="text"/>
-            <input {...passwordInput} type="password"/>
+            <h1 className={s.title}>Login</h1>
+            <input {...usernameInput} className='input' type="text" placeholder={'Username'}/>
+            <input {...passwordInput} className='input' type="password" placeholder={'Password'}/>
             <button className={'btn'} onClick={login}>Login</button>
         </div>
 

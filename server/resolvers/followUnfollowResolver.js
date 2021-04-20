@@ -9,7 +9,7 @@ module.exports = {
         const user = findUserById(id)
         if(!user || !loggedUser) throw new Error(`User with this ${id} doesn't exists!`)
 
-        loggedUser.push(user)
+        loggedUser.followed.push(user)
 
         return true;
     },
@@ -20,7 +20,9 @@ module.exports = {
         const user = findUserById(id)
         if(!user || !loggedUser) throw new Error(`User with this ${id} doesn't exists!`)
 
-        loggedUser.followed = loggedUser.followed.filter(u => u.id != id)
+        loggedUser.followed.forEach((u, i) => {
+            if (u.id == id) loggedUser.followed.splice(i, 1)
+        })
 
         return true;
     },

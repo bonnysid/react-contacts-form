@@ -13,17 +13,17 @@ interface RouteParams {
 }
 
 interface ProfileProps {
-    authData: AuthMe | null
+    authUser?: IUser
 }
 
-const Profile: FC<ProfileProps> = ({authData}) => {
+const Profile: FC<ProfileProps> = ({authUser}) => {
     const [profile, setProfile] = useState<IUser>()
     const params = useParams<RouteParams>()
     const history = useHistory()
     const {fetchUser, loading} = useUser()
 
     useEffect(() => {
-        const id = params.id || (authData && authData.id)
+        const id = params.id || (authUser && authUser.id)
         if(!id) history.push('/login')
         else fetchUser(id).then(user => setProfile(user))
     }, [params.id])
@@ -36,10 +36,11 @@ const Profile: FC<ProfileProps> = ({authData}) => {
                 <Avatar width={200} url={profile?.avatarUrl}/>
                 <h2>{profile?.username}</h2>
                 <p>{profile?.status}</p>
+                {<button onClick={() => {}} className={'btn ' + s.deleteBtn}>Delete profile</button>}
             </div>
             {profile?.followed && <div className={s.container}>
                 <h2 className={s.title}>Following</h2>
-                <UserList users={profile.followed}/>
+                <UserList authUser={authUser} users={profile.followed}/>
             </div>}
         </>
 

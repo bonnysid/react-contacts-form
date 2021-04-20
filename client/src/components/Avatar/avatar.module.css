@@ -1,4 +1,7 @@
 .avatarBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     grid-area: avatar;
     overflow: hidden;
     border-radius: 50%;

@@ -11,3 +11,12 @@
     font-weight: 600;
     color: var(--text-light);
 }
+
+.logout {
+    background: var(--red);
+    transition: .3s;
+}
+
+.logout:hover {
+    background: var(--red-light);
+}

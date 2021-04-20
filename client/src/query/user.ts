@@ -21,3 +21,13 @@ export const GET_USER = gql`
         }
     }
 `
+export const FOLLOW = gql`
+    mutation Follow($id: ID) {
+        follow(id: $id)
+    }
+`
+export const UNFOLLOW = gql`
+    mutation Unfollow($id: ID) {
+        unfollow(id: $id)
+    }
+`

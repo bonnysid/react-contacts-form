@@ -17,3 +17,13 @@
     font-size: 20px;
     margin-bottom: 1em;
 }
+
+.deleteBtn {
+    margin-top: 5px;
+    background: var(--red);
+    transition: .3s;
+}
+
+.deleteBtn:hover {
+    background: var(--red-light);
+}

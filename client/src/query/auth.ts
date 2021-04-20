@@ -16,14 +16,10 @@ export const LOGIN = gql`
     }
 `
 
-export const FOLLOW = gql`
-    mutation Follow($id: ID) {
-        follow(id: $id)
-    }
-`
-
-export const UNFOLLOW = gql`
-    mutation Follow($id: ID) {
-        follow(id: $id)
+export const CREATE_USER = gql`
+    mutation CreteUser($input: UserInput){
+        createUser(input: $input) {
+            id, username, token, tokenExpiration
+        }
     }
 `

@@ -18,11 +18,17 @@ const App: FC = () => {
     const [users, setUsers] = useState<IUser[]>([])
     const {fetchAuth} = useAuth()
     const [loggedUser, setLoggedUser] = useState<AuthMe>()
+    const [authUser, setAuthUser] = useState<IUser>()
+    const {fetchUser} = useUser()
     const {data, loading} = useQuery<IDataAllUser>(GET_ALL_USERS)
 
     useEffect(() => {
         fetchAuth().then(data => setLoggedUser(data))
     }, [])
+
+    useEffect(() => {
+        if(loggedUser) fetchUser(loggedUser.id).then(user => setAuthUser(user))
+    }, [loggedUser])
 
     useEffect(() => {
         if(!loading && data) setUsers(data.getAllUsers)
@@ -34,9 +40,9 @@ const App: FC = () => {
         <>
             <Header />
             <main className='container'>
-                <Route path={'/profile/:id?'} render={() => <Profile authData={loggedUser ? loggedUser : null} />}/>
-                <Route path={'/users'} render={() => <UserList users={users}/>} />
-                <Route path={'/login'} render={() => <LoginForm setLoggedUser={setLoggedUser} />}/>
+                <Route path={'/profile/:id?'} render={() => <Profile authUser={authUser} />}/>
+                <Route path={'/users'} render={() => <UserList authUser={authUser} users={users}/>} />
+                <Route path={'/login'} render={() => <LoginForm loggedUser={loggedUser} setLoggedUser={setLoggedUser} />}/>
             </main>
         </>
     );
