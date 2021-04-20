@@ -24,3 +24,5 @@ const AuthBlock: FC = (props) => {
         </NavLink>
     );
 }
+
+export default AuthBlock

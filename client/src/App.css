@@ -11,7 +11,12 @@
     --green: #70b35f;
     --red-light: #c36e6e;
     --green-light: #9ac38f;
-    --blue: #5a9dee
+    --blue: #5a9dee;
+
+    --btn-bg: rgb(113, 136, 212);
+    --btn-hover: rgb(102, 122, 191);
+    --btn-text: var(--text-light);
+    --btn-nav-hover: var(--main-color-extralight);
 }
 
 button {
@@ -21,6 +26,21 @@ button {
 body {
     background: var(--main-color-light);
     color: rgb(54, 57, 63);
+}
+
+.btn {
+    padding: .5em 1em;
+    background: var(--btn-bg);
+    transition: .3s;
+    max-width: 300px;
+    border-radius: 5px;
+    width: 100%;
+    color: var(--btn-text);
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: var(--btn-hover);
 }
 
 .input {
