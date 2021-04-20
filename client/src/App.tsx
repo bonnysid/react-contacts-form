@@ -6,6 +6,9 @@ import {useQuery} from "@apollo/client";
 import {GET_ALL_USERS} from "./query/user";
 import Header from "./components/Header/Header";
 import { Route } from 'react-router-dom';
+import Profile from "./components/Profile/Profile";
+import UserList from "./components/UserList/UserList";
+import LoginForm from './components/LoginForm/LoginForm';
 
 const App: FC = () => {
     const [users, setUsers] = useState<IUser[]>([])
@@ -21,8 +24,9 @@ const App: FC = () => {
         <>
             <Header />
             <main className='container'>
-                <Route path={''}/>
-                <Route path={''}/>
+                <Route path={'/profile'} render={() => <Profile />}/>
+                <Route path={'/users'} render={() => <UserList users={users}/>} />
+                <Route path={'/login'} render={() => <LoginForm />}/>
             </main>
         </>
     );

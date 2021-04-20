@@ -12,7 +12,7 @@ const AuthBlock: FC = (props) => {
     if(loading) return <Preloader />
 
     return (
-        <NavLink to={'/profile'} className={s.container}>
+        <NavLink to={data.isAuth ? '/profile' : '/login'} className={s.container}>
             {data.isAuth ?
                 <>
                     <Avatar />
