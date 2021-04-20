@@ -1,15 +1,47 @@
 .container {
+
     display: grid;
+    grid-template-areas:
+"avatar name btn"
+"avatar status btn";
+
+    grid-template-columns: 60px auto 100px;
+    width: 500px;
+    background: var(--main-color-extralight);
+    padding: 1em;
+    border-radius: 5px;
 }
 
 .name {
-
+    grid-area: name;
 }
 
 .avatar {
-
+    grid-area: avatar;
 }
 
 .status {
+    grid-area: status;
+}
 
+.btn {
+    grid-area: btn;
+}
+
+.follow {
+    background: var(--green);
+    transition: .3s;
+}
+
+.follow:hover {
+    background: var(--green-light);
+}
+
+.unfollow {
+    background: var(--red);
+    transition: .3s;
+}
+
+.unfollow:hover {
+    background: var(--red-light);
 }

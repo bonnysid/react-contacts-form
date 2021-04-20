@@ -8,7 +8,7 @@ type UserListProps = {
 }
 
 const UserList: FC<UserListProps> = ({users}) => {
-    const elements = users.map(user => <User user={user}/>)
+    const elements = users.map(user => <User user={user} follow={(id) => {}} unfollow={(id => {})} isFollowed={false}/>)
 
     return (
         <ul className={s.list}>

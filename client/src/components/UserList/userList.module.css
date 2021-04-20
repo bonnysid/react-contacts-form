@@ -1,4 +1,6 @@
 .list {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    justify-items: center;
+    grid-gap: 1em;
+    width: 100%;
 }
