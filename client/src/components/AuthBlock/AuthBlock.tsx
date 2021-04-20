@@ -10,9 +10,9 @@ const AuthBlock: FC = (props) => {
     const {data, loading, error} = useQuery(GET_AUTH_ME)
 
     if(loading) return <Preloader />
-
+console.log(data)
     return (
-        <NavLink to={data.isAuth ? '/profile' : '/login'} className={s.container}>
+        <NavLink to={data && data.authMe.isAuth ? '/profile' : '/login'} className={s.container}>
             {data.isAuth ?
                 <>
                     <Avatar width={50}/>

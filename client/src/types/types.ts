@@ -16,3 +16,8 @@ export interface IAuthData {
 export type IDataAllUser = {
     getAllUsers: IUser[]
 }
+
+export type AuthMe = {
+    id: number | string,
+    isAuth: boolean
+}

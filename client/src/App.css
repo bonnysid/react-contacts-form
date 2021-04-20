@@ -57,6 +57,10 @@ body {
     border: 2px solid var(--red);
 }
 
+a {
+    color: var(--text-light);
+}
+
 
 #app-wrapper {
     font-family: 'Open Sans', sans-serif;

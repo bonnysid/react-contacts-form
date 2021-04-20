@@ -1,44 +1,45 @@
 import React, {FC, useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
-import {useQuery} from "@apollo/client";
-import {GET_USER} from "../../query/user";
-import {IUser} from "../../types/types";
+import {Redirect, useHistory, useParams} from "react-router-dom";
+import {AuthMe, IUser} from "../../types/types";
 import Avatar from "../Avatar/Avatar";
 import s from './profile.module.css'
 import Preloader from "../Preloader/Preloader";
 import UserList from "../UserList/UserList";
+import useUser from "../../hooks/useUser";
+import useFollowUnfollow from "../../hooks/useFollowUnfollow";
 
 interface RouteParams {
     id: string
 }
 
-const Profile: FC = (props) => {
-    const [user, setUser] = useState<IUser>()
+interface ProfileProps {
+    authData: AuthMe | null
+}
+
+const Profile: FC<ProfileProps> = ({authData}) => {
+    const [profile, setProfile] = useState<IUser>()
     const params = useParams<RouteParams>()
-    const {data, loading, error} = useQuery(GET_USER, {
-        variables: {
-            id: params.id
-        }
-    })
+    const history = useHistory()
+    const {fetchUser, loading} = useUser()
 
     useEffect(() => {
-        if (!loading && data) {
-            setUser(data.getUser)
-        }
-    }, [data, params.id])
+        const id = params.id || (authData && authData.id)
+        if(!id) history.push('/login')
+        else fetchUser(id).then(user => setProfile(user))
+    }, [params.id])
 
     if (loading) return <Preloader/>
 
     return (
         <>
             <div className={s.container}>
-                <Avatar width={200} url={user?.avatarUrl}/>
-                <h2>{user?.username}</h2>
-                <p>{user?.status}</p>
+                <Avatar width={200} url={profile?.avatarUrl}/>
+                <h2>{profile?.username}</h2>
+                <p>{profile?.status}</p>
             </div>
-            {user?.followed && <div className={s.container}>
+            {profile?.followed && <div className={s.container}>
                 <h2 className={s.title}>Following</h2>
-                <UserList users={user.followed}/>
+                <UserList users={profile.followed}/>
             </div>}
         </>
 

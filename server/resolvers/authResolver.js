@@ -8,7 +8,6 @@ module.exports = {
         const user = users.find(u => u.username === username)
         if(!user) throw new Error('User doesn\'t exists')
 
-        console.log(password, user.password, bcrypt.compareSync(password, user.password))
         const isEqual = bcrypt.compareSync(password, user.password)
         if(!isEqual) throw new Error('Password incorrect!')
 
@@ -23,10 +22,12 @@ module.exports = {
             username: user.username
         }
     },
-    authMe: (args, req) => ({
-        id: req.id,
-        isAuth: req.isAuth
-    }),
+    authMe: (args, req) => {
+        return {
+            id: req.id,
+            isAuth: req.isAuth
+        }
+    },
     createUser: ({input}) => {
         const user = {
             id: Date.now(),
